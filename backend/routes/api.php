@@ -24,6 +24,7 @@ use App\Http\Controllers\Api\GuideManagementQueriesController;
 use App\Http\Controllers\Api\PackageManagementQueriesController;
 use App\Http\Controllers\Api\BookingManagementQueriesController;
 use App\Http\Controllers\Api\AdvancedDatabaseOperationsController;
+use App\Http\Controllers\Api\SqlResultController;
 
 
 /*
@@ -340,6 +341,9 @@ Route::prefix('query-results')->group(function () {
     | Q10: sp_CreateBookingWithPayment PROCEDURE (TRANSACTION + SAVEPOINT)
     |
     */
+
+    Route::get('/sql/read/{key}', [SqlResultController::class, 'read']);
+    Route::post('/sql/run/{key}', [SqlResultController::class, 'run']);
 
     Route::prefix('advanced-operations')->group(function () {
         Route::get('/reservations', [AdvancedDatabaseOperationsController::class, 'reservations']);
